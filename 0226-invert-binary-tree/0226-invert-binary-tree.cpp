@@ -16,11 +16,11 @@ public:
         if(root==NULL) return;
         func(root->left);
         func(root->right);
-        if(root->left !=NULL &&root->right!=NULL){
-            TreeNode* templ=root->left;
-            root->left=root->right;
-            root->right=templ;
-        }
+        
+        TreeNode* temp=root->left;
+        root->left=root->right;
+        root->right=temp;
+
     }
     TreeNode* invertTree(TreeNode* root) {
         
