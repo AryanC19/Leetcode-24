@@ -16,15 +16,15 @@ public:
             q2.push(q1.front());
             q1.pop();
         }
-        int del=q1.front();
+        int x=q1.front();
         q1.pop();
+        
         while(!q2.empty()){
             last=q2.front();
             q1.push(q2.front());
             q2.pop();
         }
-
-        return del;
+        return x;
     }
     
     int top() {
