@@ -1,45 +1,41 @@
 class Solution {
 public:
-    vector<int> shortestDistanceAfterQueries(int n, vector<vector<int>>& queries) {
-        vector<vector<int>> adj(n);
-        vector<int> answer;
+    int bfs(unordered_map<int,vector<int>> &adj,int n){
 
-        // Initialize the initial roads
-        for (int i = 0; i < n - 1; i++) {
-            adj[i].push_back(i + 1);
-        }
 
-        auto bfs = [&]() {
-            vector<int> dist(n, -1);
-            queue<int> q;
-            q.push(0);
-            dist[0] = 0;
+        queue<int> q;
+        q.push(0);
+        vector<int> dist(n,-1);
+        dist[0]=0;
+        while(!q.empty()){
 
-            while (!q.empty()) {
-                int node = q.front();
-                q.pop();
+            int p=q.front();
+            q.pop();
 
-                for (int neighbor : adj[node]) {
-                    if (dist[neighbor] == -1) {
-                        dist[neighbor] = dist[node] + 1;
-                        q.push(neighbor);
-                    }
+            for(auto i:adj[p]){
+
+                if(dist[i]==-1){
+                    dist[i]=1+dist[p];
+                    q.push(i);
                 }
             }
-
-            return dist[n - 1];
-        };
-
-        for (const auto& query : queries) {
-            // Add the new road from the query
-            adj[query[0]].push_back(query[1]);
-
-            // Calculate the shortest path after adding this road
-            int shortestDist = bfs();
-
-            answer.push_back(shortestDist);
         }
 
-        return answer;
+        return dist[n-1];
+    }
+    vector<int> shortestDistanceAfterQueries(int n, vector<vector<int>>& queries) {
+        unordered_map<int,vector<int>> adj;
+
+        for(int i=0;i<n-1;i++){
+            adj[i].push_back(i+1);
+        }
+
+        vector<int> ans;
+        for(auto &i:queries){
+            adj[i[0]].push_back(i[1]);
+            ans.push_back(bfs(adj,n));
+        }
+        return ans;
+
     }
 };
