@@ -1,21 +1,25 @@
 class Solution {
 public:
- vector<int> twoSum(vector<int> &arr, int k)
-{
+    vector<int> twoSum(vector<int>& nums, int target) {
+        
+        int n=nums.size();
+        unordered_map<int,int> mpp;
 
-    int n = arr.size();
-    map<int, int> mpp;
+        for(int i=0;i<nums.size();i++){
 
-    for (int i = 0; i < n; i++)
-    {
-        int rem = k - arr[i];
+            int rem=target-nums[i];
 
-        if (mpp.find(rem) != mpp.end())
-        {
-            return {i, mpp[rem]};
+
+            if(mpp.find(rem)!=mpp.end()){
+                return {i,mpp[rem]};
+            }
+
+
+            mpp[nums[i]]=i;
         }
-        mpp[arr[i]]=i;
+
+
+        return {-1,-1};
+        
     }
-    return {};
-}
 };
