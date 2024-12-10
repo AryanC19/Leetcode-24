@@ -1,24 +1,26 @@
 class Solution {
 public:
+    int res=1e9;
     int n;
-    vector<int> dp;
-    int func(int i,vector<int>& nums){
+    int dp[1001];
+    int func(int i,vector<int> &nums){
 
-        if(i>=n-1){
-            return 0;
-        }
-
+        if(i>=n-1) return 0;
         if(dp[i]!=-1) return dp[i];
-        int jump=n;
-        for(int j=1;j<=nums[i];j++){
-            jump=min(jump,1+func(i+j,nums)) ;           
+
+        int tot=1e9;
+        for(int a=1;a<=nums[i];a++){
+            tot=min(tot,1+func(i+a,nums));
+            
         }
-        return dp[i]=jump;
+        return dp[i]=tot;
     }
     int jump(vector<int>& nums) {
-        n=nums.size();
-        dp.resize(n,-1);
-        return func(0,nums);
 
+        n=nums.size();
+        memset(dp,-1,sizeof(dp));
+
+        return func(0,nums);
+        
     }
 };
