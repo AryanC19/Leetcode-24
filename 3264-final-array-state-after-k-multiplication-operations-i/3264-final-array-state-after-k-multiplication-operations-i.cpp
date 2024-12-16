@@ -5,7 +5,7 @@ public:
     vector<int> getFinalState(vector<int>& nums, int k, int multiplier) {
         //min heap
         priority_queue<P,vector<P> ,greater<P>> pq;
-
+        int n=nums.size();
         for(int i=0;i<nums.size();i++) pq.push({nums[i],i});
 
         while(k--){
@@ -16,23 +16,18 @@ public:
             pq.push({val,ind});
         }
 
-        vector<P> arr;
+        vector<int> ans(n);
+
 
         while(!pq.empty()){
             auto p=pq.top();
             pq.pop();
             int val=p.first;
             int ind=p.second;
-            arr.push_back({ind,val});
+            ans[ind]=val;
         }
 
-        sort(begin(arr),end(arr));
-
-        vector<int> ans;
-
-        for(auto i:arr){
-            ans.push_back(i.second);
-        }
+        
         return ans;
 
 
