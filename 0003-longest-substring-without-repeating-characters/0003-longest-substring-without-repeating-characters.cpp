@@ -4,20 +4,18 @@ public:
         
         int n=s.size();
         unordered_map<char,int> mpp;
+
         int l=0,r=0;
-        int ans=0;
+        int maxLen=-1e9;
+
         while(r<n){
-
-            while(mpp.find(s[r])!=mpp.end()){
-                mpp[s[l]]--;
-                l++;
-                if(mpp[s[l]]==0)mpp.erase(s[l]);
+            if(mpp.find(s[r])!=mpp.end()){
+                l=max(l,mpp[s[r]]+1);
+                maxLen=max(maxLen,r-l+1);
             }
-
-            ans=max(ans,r-l+1);
-            mpp[s[r]]++;
+            mpp[s[r]]=r;
             r++;
         }
-        return ans;
+        return maxLen==-1e9 ?0 :maxLen;
     }
 };
