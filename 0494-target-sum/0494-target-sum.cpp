@@ -25,7 +25,7 @@ public:
         n = arr.size();
         int sum= accumulate(begin(arr),end(arr),0);
 
-       if (abs(target) > sum) return 0;
+       //if (abs(target) > sum) return 0;
         if((sum-target)%2!=0) return 0;
         int k=(sum-target)/2;
         if(k < 0) return 0;  // Add this line before dp resize
