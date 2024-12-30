@@ -1,23 +1,12 @@
 class Solution {
 public:
     bool isIsomorphic(string s, string t) {
+        vector<int> sMap(256, -1), tMap(256, -1);
         
-        unordered_map<char,char> mpp;
-        vector<bool> mapped(126,false);
-
-        int n=s.size();
-        int m=t.size();
-
-        if(n!=m) return false;
-
-
-        for(int i=0;i<n;i++){
-            if(mpp.find(s[i])==mpp.end() && !mapped[t[i]-'a'] ){
-                mpp[s[i]]=t[i];
-                mapped[t[i]-'a']=true;
-            }else if (mapped[t[i]-'a']) {
-                return mpp[s[i]]==t[i];
-            }else return false;
+        for(int i = 0; i < s.length(); i++) {
+            if(sMap[s[i]] != tMap[t[i]]) return false;
+            sMap[s[i]] = i;
+            tMap[t[i]] = i;
         }
         return true;
     }
