@@ -6,12 +6,12 @@ public:
 
         for(auto i:s){
             if(!s1.empty() && i=='#') s1.pop();
-            else s1.push(i);
+            else if(i!='#')  s1.push(i);
         }
 
         for(auto i:t){
             if(!s2.empty() && i=='#') s2.pop();
-            else s2.push(i);
+            else if(i!='#') s2.push(i);
         }
 
 
@@ -27,6 +27,7 @@ public:
             s2.pop();
         }
 
+        cout<<a<< " " << b;
         return a==b;
       
     }
