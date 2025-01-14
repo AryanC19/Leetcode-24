@@ -6,29 +6,26 @@
  *     TreeNode *right;
  *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
  *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left),
- * right(right) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
 class Solution {
 public:
-    int sum(TreeNode* node, int& ans) {
 
-        if (node == NULL) {
-            return 0;
-        }
+    int ans=INT_MIN;
+    int func(TreeNode* root,int sum){
 
-        int ls = max(0, sum(node->left, ans));
+        if(root==NULL) return 0;
+        sum+=root->val;
+        int lsum=max(0,func(root->left,sum));
+        int rsum=max(0,func(root->right,sum));
+        ans=max(lsum+rsum+root->val,ans);
+        return root->val + max(lsum, rsum);
 
-        int rs = max(0, sum(node->right, ans));
-
-        ans = max(ans, node->val + ls + rs);
-
-        return node->val + max(ls, rs);
     }
     int maxPathSum(TreeNode* root) {
-        int ans = INT_MIN;
-        sum(root, ans);
+    
+        func(root,0);
         return ans;
     }
 };
