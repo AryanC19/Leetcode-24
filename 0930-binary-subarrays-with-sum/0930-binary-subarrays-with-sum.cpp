@@ -1,34 +1,21 @@
 class Solution {
 public:
-    // prob 2 2025
     int numSubarraysWithSum(vector<int>& nums, int goal) {
         
+        int ps=0;
         int n=nums.size();
-        int l=0,r=0;
+
+        unordered_map<int,int> mpp;
         int ans=0;
-        int sum=0;
-        while(r<n){
-
-            sum+=nums[r];
-
-            while(l<r && sum>goal){
-                sum-=nums[l];
-                l++;
+        mpp[0]=1;
+        for(int &i:nums){
+            ps+=i;
+            int rem=ps-goal;
+            if(mpp.count(rem)){
+                ans+=mpp[rem];
             }
-
-            if(sum==goal){
-
-                int tl=l;
-                while(tl<r && nums[tl]==0){
-                    ans++;
-                    tl++;
-                }
-
-                ans++;
-            }
-            r++;
+            mpp[ps]++;
         }
-
         return ans;
     }
 };
