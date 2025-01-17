@@ -1,30 +1,19 @@
 class Solution {
 public:
-    int numberOfSubarrays(vector<int>& nums, int goal) {
-        int n = nums.size();
-        int l = 0, r = 0, validsub = 0, ans = 0, sum = 0;
+    int numberOfSubarrays(vector<int>& nums, int k) {
+        
+        unordered_map<int,int> mpp;
+        mpp[0]=1;
+        int n=nums.size(),sum=0,count=0,oddCount=0;
 
-        while (r < n) {
-            sum += nums[r]%2==0?0:1;
+        for(int i=0;i<n;i++){
+            if(nums[i]%2!=0) oddCount++;
 
-            while (sum > goal && l < r) {
-                sum -= nums[l]%2==0?0:1;
-                l++;
-                validsub = 0;
+            if(mpp.find(oddCount-k)!=mpp.end()){
+                count+=mpp[oddCount-k];
             }
-
-            if (sum == goal) {
-                validsub = 1;
-                int templ = l;
-                while (templ < r && nums[templ] %2== 0) {
-                    validsub++;
-                    templ++;
-                }
-                ans += validsub;
-            }
-            r++;
+            mpp[oddCount]++;
         }
-
-        return ans;
+        return count;
     }
 };
