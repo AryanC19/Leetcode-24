@@ -1,23 +1,20 @@
-#include <iostream>
-#include <string>
-using namespace std;
-
 class Solution {
 public:
     string longestCommonPrefix(vector<string>& strs) {
-        if (strs.empty()) {
-            return "";
-        }
-        string prefix = strs[0];
-
-        for (int i = 1; i < strs.size(); i++) {
-            int j = 0;
-            while (j < prefix.size() && j < strs[i].size() &&
-                   prefix[j] == strs[i][j]) {
+        int n=strs.size();
+        string pref=strs[0];
+        if(pref.size()==0) return pref;
+        for(int i=1;i<n;i++){
+            int j=0;
+            string temp="";
+            while(j<pref.size() && strs[i][j]==pref[j]){
+                temp+=pref[j];
                 j++;
             }
-            prefix = prefix.substr(0, j);
+            pref=temp;
+            if(temp=="") break;
+            
         }
-        return prefix;
+        return pref;
     }
 };
