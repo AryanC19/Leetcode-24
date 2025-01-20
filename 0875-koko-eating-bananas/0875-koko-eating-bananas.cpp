@@ -1,42 +1,33 @@
 class Solution {
 public:
-
-    bool func(int k,vector<int>& piles, int th){
-
-
-        int hrs=0;
-        for(int i=0;i<piles.size();i++){
-
-            //error on piles=10000000000
-            // long long currhrs=ceil(float(piles[i])/float(k));
-            // hrs+=currhrs;
-            
-            // Using integer ceiling division instead of float
-            hrs += (piles[i] + k - 1) / k;  
-            if(hrs>th) return false;
+    typedef long long ll;
+    bool func(ll speed, vector<int>& piles, ll limit){
+        ll hours=0;
+        for(auto &i:piles){
+            hours+= ceil(double(i)/double(speed));
+            if(hours>limit) return false;
         }
         return true;
     }
-    int minEatingSpeed(vector<int>& piles, int th) {
+
+    int minEatingSpeed(vector<int>& piles, int k) {
+        
         int n=piles.size();
-
-        long long maxi=*max_element(begin(piles),end(piles));
-
-        long long l=1,h=maxi;
-
+        ll l=1;
+        ll h=*max_element(piles.begin(),piles.end());
+        ll ans=1e9;
         while(l<=h){
 
-            int m=l+(h-l)/2;
+            ll m=l+(h-l)/2;
 
-            if(func(m,piles,th)){
-
+            if(func(m,piles,k)){
                 h=m-1;
+                ans=min(ans,m);
             }else{
                 l=m+1;
             }
         }
-
-        return l;
+        return ans;
 
     }
 };
