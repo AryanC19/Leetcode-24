@@ -10,11 +10,8 @@ public:
 
              i
 */
-    static bool comp(vector<string> &a, vector<string> &b) {
-        int t1 = stoi(a[1]);
-        int t2 = stoi(b[1]);
-        if (t1 == t2) return a[0] == "OFFLINE"; // Prioritize OFFLINE
-        return t1 < t2;
+    static bool comp(vector<string> &a,vector<string>&b){
+        return stoi(a[1])==stoi(b[1]) ? a[0]=="OFFLINE" : stoi(a[1])<stoi(b[1]);
     }
 
     vector<int> countMentions(int numberOfUsers, vector<vector<string>>& events) {
@@ -41,11 +38,11 @@ public:
             int timestamp=stoi(event[1]);
             string users=event[2];
             
-            cout<<type<<" " << users<< " " <<timestamp<<endl;
+          //  cout<<type<<" " << users<< " " <<timestamp<<endl;
             
             while(!offlineToOnline.empty() && timestamp>=offlineToOnline.front().first){
 
-                cout<<"currtimestamp:"<<timestamp<<" "<< "prevUserTimestamp:"<<offlineToOnline.front().first<<endl;
+             //   cout<<"currtimestamp:"<<timestamp<<" "<< "prevUserTimestamp:"<<offlineToOnline.front().first<<endl;
                 auto prevUser=offlineToOnline.front();
 
                 int backOnline=prevUser.first;
@@ -65,7 +62,7 @@ public:
                 
                 }else if(users=="HERE"){
                     for(auto &id:status){
-                        // **  WAS DOING int num=id.first[2]-'0'; WHICH DOESNT WORK FOR SOUBLE DIIGT
+                        // **  WAS DOING int num=id.first[2]-'0'; WHICH DOESNT WORK FOR DOUBLE DIIGT
                         int num=stoi(id.first.substr(2));
                         if(id.second)
                             mentions[num]++;
@@ -78,7 +75,6 @@ public:
                     string token="";
                     while(getline(ss,token,' ')){
                         ids.push_back(token);
-                       // cout<<token<<"WEANIGGA"<<endl;
                     }
                     for(auto &id:ids){
                         int num=stoi(id.substr(2));
@@ -94,14 +90,14 @@ public:
                 int backOnline=timestamp+60;
                 offlineToOnline.push({backOnline,id});  
                 
-                cout<<"backnONline: " << backOnline<< " "<< id <<endl;
+               // cout<<"backnONline: " << backOnline<< " "<< id <<endl;
                 
             }
         }
         
-        for(auto i:mentions){
-            cout<<i<<" ";
-        }
+        // for(auto i:mentions){
+        //     cout<<i<<" ";
+        // }
         cout<<endl;
         return mentions;
         
