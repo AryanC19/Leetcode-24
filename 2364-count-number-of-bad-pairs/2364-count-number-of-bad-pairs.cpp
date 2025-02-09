@@ -1,20 +1,30 @@
 class Solution {
 public:
+    typedef long long ll;
+
     long long countBadPairs(vector<int>& nums) {
+        ll ans=0;
+
         unordered_map<int,int> mpp;
-        long long goodpairs=0;
-        long long n=nums.size();
-        long long total=n*(n-1)/2;
-        //mpp[0]=0;
-        for(int i=0;i<n;i++){
-            int diff=i-nums[i];
-            
-            if(mpp.find(diff)!=mpp.end()){
-                goodpairs+=mpp[diff];
+
+        //j-nums[j] = i-nums[i];
+
+        ll n=nums.size();
+
+        ll bad=0;
+        ll total=n* (n-1)/2;
+        ll good=0;
+
+
+
+        for(int i=0;i<nums.size();i++){
+
+            if(mpp.count(i-nums[i]) ){
+                good+=mpp[i-nums[i]];
             }
-                mpp[diff]++;
-            
-        }
-        return total-goodpairs;
-    }   
+            mpp[i-nums[i]]++;
+        }       
+
+        return total-good;
+    }
 };
