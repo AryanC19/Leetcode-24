@@ -1,20 +1,24 @@
 class Solution {
-public: 
+public:
+
     int n;
     int dp[301][5001];
-    int func(int idx,int sum, vector<int>& coins){
+
+    int func(int i,vector<int> &coins, int k){
+
+        if(k==0)  return 1;
+        if(k<0  || i>=n) return 0;
+        if(dp[i][k]!=-1) return dp[i][k];
+
+        int take= func(i,coins,k-coins[i]);
+        int nottake=func(i+1,coins,k);
         
-        if(idx>=n) return 0;
-        if(sum==0) return 1;
-        if(sum<0) return 0;
-        if(dp[idx][sum]!=-1) return dp[idx][sum];
-        int take=func(idx,sum-coins[idx],coins);
-        int nottake=func(idx+1,sum,coins);
-        return dp[idx][sum]=take+nottake;
+        return dp[i][k]=take+nottake;
+
     }
-    int change(int sum, vector<int>& coins) {
+    int change(int k, vector<int>& coins) {
         n=coins.size();
         memset(dp,-1,sizeof(dp));
-        return func(0,sum,coins);
+        return func(0,coins,k);
     }
 };
