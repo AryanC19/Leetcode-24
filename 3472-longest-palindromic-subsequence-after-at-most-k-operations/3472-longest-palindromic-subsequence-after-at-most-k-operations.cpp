@@ -1,20 +1,34 @@
 class Solution {
 public:
-  int solve(int left, int right, int ops, string& s, vector<vector<vector<int>>>& dp) {
-    if (left > right) return 0;
-    if (left == right) return 1;
-    if (dp[left][right][ops] != -1) return dp[left][right][ops];
+    int dp[201][201][201];
 
-    int maxLength = max(solve(left + 1, right, ops, s, dp), solve(left, right - 1, ops, s, dp));
-    int opsReq = min(abs(s[left] - s[right]), 26 - abs(s[left] - s[right]));
-    if (ops >= opsReq) maxLength = max(maxLength, 2 + solve(left + 1, right - 1, ops - opsReq, s, dp));
+    int func(int i,int j,string &s, int k){
+        
+        if(i==j) return 1;
 
-    return dp[left][right][ops] = maxLength;
-  }
+        if(j<i) return 0;
 
-  int longestPalindromicSubsequence(string s, int k) {
-    int n = s.size();
-    vector<vector<vector<int>>> dp(n, vector<vector<int>>(n, vector<int>(k + 1, -1)));
-    return solve(0, n - 1, k, s, dp);
-  }
+        if(dp[i][j][k]!=-1) return dp[i][j][k];
+
+        int o1=func(i+1,j,s,k);
+        int o2=func(i,j-1,s,k);
+
+        int o3=0;
+        int ops=min(abs(s[i]-s[j]), 26- abs(s[i]-s[j]));
+        if(ops<=k){
+            o3=2+func(i+1,j-1,s,k-ops);
+        }
+
+        return dp[i][j][k]= max({o1,o2,o3});
+        
+
+    }
+    int longestPalindromicSubsequence(string s, int k) {
+        int n=s.size();
+        int i=0;
+        int j=n-1;
+        memset(dp,-1,sizeof(dp));
+        return func(i,j,s,k);
+
+    }
 };
