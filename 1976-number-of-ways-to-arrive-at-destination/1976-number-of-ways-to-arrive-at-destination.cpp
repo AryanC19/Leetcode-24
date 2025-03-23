@@ -1,65 +1,49 @@
 class Solution {
 public:
-typedef long long ll;
+    typedef long long ll;
+    typedef pair<ll, ll> P;
+    const int MOD = 1e9 + 7;
+
     int countPaths(int n, vector<vector<int>>& roads) {
-        
+        unordered_map<int, vector<P>> adjList;
 
-
-        unordered_map<int, vector< pair<int,int> >> adjList;
-
-
-        for(auto &i:roads){
-
-            int u=i[0];
-            int v=i[1];
-            int time=i[2];
-
-            adjList[u].push_back({v,time});
-            adjList[v].push_back({u,time});
+        // Construct adjacency list
+        for (auto& i : roads) {
+            int u = i[0], v = i[1], wt = i[2];
+            adjList[u].push_back({v, wt});
+            adjList[v].push_back({u, wt});
         }
 
-        //dist,node
-        priority_queue<pair<ll,ll > ,vector<pair<ll,ll > > , greater<pair<ll,ll > > > pq;
-        int MOD=1e9+7;
+        // Min heap (priority queue)
+        priority_queue<P, vector<P>, greater<P>> pq;
+        pq.push({0, 0});  // {distance, node}
 
-        pq.push({0,0});
+        // src -> shortest distance, number of ways
+        vector<P> dist(n, {LLONG_MAX, 0});  //  Use LLONG_MAX to avoid overflow
+        dist[0] = {0, 1};  // Source node initialized
 
-        vector<ll> dist(n,1e12),ways(n,0);
-
-        dist[0]=0;
-        ways[0]=1;
-
-
-
-        while(!pq.empty()){
-
-            auto [wt,node]=pq.top();
+        while (!pq.empty()) {
+            auto [wt, node] = pq.top();  // Use long long for `wt`
             pq.pop();
-            
-            for(auto [adjNode,adjWt]: adjList[node]){
+
+            // Optimization: Skip outdated distances
+            if (wt > dist[node].first) continue;  
+
+            for (auto [childNode, childDist] : adjList[node]) {
+                ll newDist = wt + childDist;
                 
-
-                //coming with the shortest dist for the first time
-                if(dist[adjNode]>wt+adjWt){
-
-                    dist[adjNode] =wt+adjWt;
-
-                    pq.push({wt+adjWt,adjNode});
-
-                    // set the ways of adjNode to ways of node since visiting first time
-                    ways[adjNode]=ways[node];
-
-                }else if( dist[adjNode]== wt+adjWt){
-                    // if already shortest path present in dist, increase ways[adjNde]
-                    //with the numways to reach adjNode+ numWays to reach node
-                    ways[adjNode] = (ways[adjNode]+ ways[node])%MOD;
+                if (newDist < dist[childNode].first) {  
+                    //  Found a shorter path, update distance and ways count
+                    dist[childNode].first = newDist;
+                    dist[childNode].second = dist[node].second;
+                    pq.push({newDist, childNode});
+                } else if (newDist == dist[childNode].first) {  
+                    // If same shortest path found, add ways
+                    dist[childNode].second = (dist[childNode].second + dist[node].second) % MOD;
                 }
             }
         }
 
-
-        //      lastNode
-        return ways[n-1]%MOD;
-       
+        return dist[n - 1].second;  //  Return number of ways to reach destination
     }
 };
