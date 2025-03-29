@@ -1,40 +1,48 @@
 class Solution {
 public:
+    int findCircleNum(vector<vector<int>>& graph) {
+        
+        unordered_map<int,vector<int> > mpp;
 
-    int findCircleNum(vector<vector<int>>& isConnected) {
-        int n=isConnected.size();
-        int m=isConnected[0].size();
-        vector<int> visited(n,0);
-        unordered_map<int,vector<int>> mpp;
+        int n=graph.size();
+
+
         for(int i=0;i<n;i++){
+
             for(int j=0;j<n;j++){
-                if(isConnected[i][j]==1){
+
+                if(graph[i][j]==1){
+
                     mpp[i].push_back(j);
                     mpp[j].push_back(i);
                 }
             }
         }
-        int province=0;
-        for(int i=0;i<mpp.size();i++){
-            if(!visited[i]){
-                province++;
-                
-                queue<int> q;
-                visited[i]=1;
-                q.push(i);
+
+        int cnt=0;
+
+        vector<int> vis(n,0);
+
+        for(int i=0;i<n;i++){
+            
+            if(!vis[i]){
+                cnt++;
+                vis[i]=1;
+                queue<int> q;   
+                q.push(i);  
                 while(!q.empty()){
-                    int node=q.front();
+                    auto p=q.front();
                     q.pop();
-                    for(auto nodes:mpp[node]){
-                        if(!visited[nodes]){
-                            visited[nodes]=1;
-                            q.push(nodes);
+                    for(auto &node:mpp[p]){
+                        if(!vis[node]){
+                            vis[node]=1;
+                            q.push(node);
                         }
                     }
                 }
             }
         }
 
-        return province;
+        return cnt;
     }
 };
