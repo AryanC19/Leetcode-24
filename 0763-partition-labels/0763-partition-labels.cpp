@@ -1,53 +1,32 @@
 class Solution {
 public:
     vector<int> partitionLabels(string s) {
+        unordered_map<char,int> lastOcc;
+        int n=s.size();
 
-        // to store last_occ of every char
-        unordered_map<char,int> last_occ;
-
-        for(int i=0;i<s.size();i++){
-            last_occ[s[i]]=i;
+        for(int i=0;i<n;i++){
+            lastOcc[s[i]]=i;
         }
 
-        vector<int> res;
-        int str=0,end=0;
 
-/*
-0123456789 10 11 12 13 14 15 16 17 18 19 20 21 22 23
-ababcbacad e  f  e  g  d  e  h  i  j  h  k  l  i  j
-                                                  i
-s       e              e->e           e------->e->e
-         s                e
-                             s                    e
-e=mx(0,lst_occ[a])
-e=8
-          5
-e=mx(8,lst_occ[b])
-e=8
-.
-.
-.
-e=8
+        int i=0;
 
-i==e  , res.pb(8-0+1);
-s=i+1; ,s=9;
+        vector<int> ans;
 
-i==e res.pb(15-9+1)
-s=i+1 , s=16
+        while(i<n){
 
-i==e res.pb(23-16+1)
+            int end= lastOcc[s[i]];
 
-
-*/
-        for(int i=0;i<s.size();i++){
-            end=max(end,last_occ[s[i]]);
-            if(i==end){
-                res.push_back(end-str+1);
-                str=i+1;
+            int j=i;
+            while(j<end){
+                end=max(end,lastOcc[s[j]]);
+                j++;
             }
-                
+            ans.push_back(j-i+1);
+            i=j+1;
         }
-        return res;
+
+        return ans;
 
     }
 };
