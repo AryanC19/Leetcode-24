@@ -1,50 +1,43 @@
 class MyQueue {
 public:
-    stack<int> ip,op;
+    stack<int> in,op;
+    int first=-1;
 
     MyQueue() {
         
     }
     
     void push(int x) {
-        
-        ip.push(x);
+        if(in.empty()) first=x;
+        in.push(x);
     }
     
     int pop() {
-        
-        if(!op.empty()){
-            int x=op.top();
-            op.pop();
-            return x;
-        }else{
-            while(!ip.empty()){
-                op.push(ip.top());
-                ip.pop();
-            }
-            int x=op.top();
-            op.pop();
-            return x;
+     
+        while(!in.empty()){
+            op.push(in.top());
+            in.pop();
         }
+        
+        int rem=op.top();
+        op.pop();
+        if(!op.empty())
+            first=op.top();
+
+        while(!op.empty()){
+            in.push(op.top());
+            op.pop();
+        }
+        return rem;
+
     }
     
     int peek() {
-        
-        if(!op.empty()){
-            int x=op.top();
-            return x;
-        }else{
-            while(!ip.empty()){
-                op.push(ip.top());
-                ip.pop();
-            }
-            int x=op.top();
-            return x;
-        }       
+        return first;
     }
     
     bool empty() {
-        return op.empty() && ip.empty();
+        return in.empty();
     }
 };
 
