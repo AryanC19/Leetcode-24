@@ -1,46 +1,35 @@
 class MyStack {
 public:
+    // prepped this for ion interview, lifes a fucking joke 
 
-    queue<int> in,op;
-    int last=-1;
-
+    queue<int> primary, temp;
+    
     MyStack() {
         
     }
     
     void push(int x) {
-        in.push(x);
-        last=x;
+        temp.push(x);
+
+        while(!primary.empty()){
+            temp.push(primary.front());
+            primary.pop();
+        }
+        swap(temp,primary);
     }
     
     int pop() {
-        int rem=0;
-
-        while(!in.empty()){
-            
-            if(in.size()==2) 
-                last=in.front();
-            if(in.size()>1){
-                op.push(in.front());
-            }else{
-                rem=in.front();
-            }
-            in.pop();
-        }
-        
-        while(!op.empty()){
-            in.push(op.front());
-            op.pop();
-        }
-        return rem;
+        int x=primary.front();
+        primary.pop();
+        return x;
     }
     
     int top() {
-        return last;
+        return primary.front();
     }
     
     bool empty() {
-        return in.empty();
+        return primary.empty();
     }
 };
 
