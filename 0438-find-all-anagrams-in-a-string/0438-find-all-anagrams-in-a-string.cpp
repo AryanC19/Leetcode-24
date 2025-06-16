@@ -1,39 +1,30 @@
 class Solution {
 public:
-    vector<int> findAnagrams(string s2, string s1) {
-        
-        int n1=s1.size();
-        int n2=s2.size();
-        map<char,int> mpp1,mpp2;
+    //RUPEEK COUDNT SOLVE FUCKIGN IDIOt 
+    vector<int> findAnagrams(string text, string word) {
+        unordered_map<char, int> wordMap, textMap;
 
-        for(auto i:s1) mpp1[i]++;
+        for(auto c: word) wordMap[c]++;
+        int wordSize=word.size();
+        int textSize=text.size();
 
-        for(int i=0;i<n1;i++){
-            mpp2[s2[i]]++;
-        }
         vector<int> ans;
-        int l=0,r=n1;
-     
-        while(r<n2){
-            if(mpp1==mpp2) {
-                ans.push_back(l);
-            }
-            mpp2[s2[r]]++;
-            mpp2[s2[l]]--;
+        int l=0, r=wordSize;
 
-            if(mpp2[s2[l]]==0) mpp2.erase(s2[l]);
+        for(int i=0;i<wordSize;i++){
+            textMap[text[i]]++;
+        }
+        if(textMap==wordMap) ans.push_back(0);
 
-            l++;
+        while(r<textSize){
+            textMap[text[r]]++;
+            textMap[text[l]]--;
+            if(textMap[text[l]]==0) textMap.erase(text[l]);
             r++;
+            l++;
+            if(textMap==wordMap) ans.push_back(l);
         }
-
-        if(mpp1==mpp2) {
-            ans.push_back(l);
-        }
-
-        
 
         return ans;
-        
     }
 };
