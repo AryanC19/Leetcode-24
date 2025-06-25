@@ -3,35 +3,29 @@ public:
     bool checkInclusion(string s1, string s2) {
         
 
+        unordered_map<int,int> freqMap;
+
+        if(s1.size() >s2.size() ) return false;
+        for(auto &i:s1) freqMap[i]++;
+
+        unordered_map<int,int> pattern;
+
+        for(int i=0;i<s1.size();i++){
+            pattern[s2[i]]++;
+        }
         
-        int n=s1.size();
-        int n2=s2.size();
-        map<char,int> mpp1,mpp2;
+        if(pattern==freqMap) return true;
 
-        if (n > n2) return false; 
+        int l=0; int r=s1.size();
 
-        for(auto i:s1) mpp1[i]++;
-
-        for(int i=0;i<n;i++){
-            mpp2[s2[i]]++;
-        }
-
-        int l=0,r=n;
-
-        //if (mpp1 == mpp2) return true;
-     
-        while(r<n2){
-            if(mpp1==mpp2) return true;
-            mpp2[s2[r]]++;
-            mpp2[s2[l]]--;
-
-            if(mpp2[s2[l]]==0) mpp2.erase(s2[l]);
-
-            l++;
+        while(r<s2.size()){
+            pattern[s2[r]]++;
+            pattern[s2[l]]--;
+            if(pattern[s2[l]]==0) pattern.erase(s2[l]);
+            if(pattern==freqMap) return true;
             r++;
+            l++;
         }
-
-        if(mpp1==mpp2) return true;
 
         return false;
 
