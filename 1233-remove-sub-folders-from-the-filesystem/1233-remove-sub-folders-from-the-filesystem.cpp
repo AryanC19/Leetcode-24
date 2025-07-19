@@ -1,29 +1,30 @@
 class Solution {
 public:
     vector<string> removeSubfolders(vector<string>& folder) {
-        unordered_map<string, int> mpp;
-        sort(begin(folder),end(folder));
+        
+        unordered_set<string> st;
+        sort(folder.begin(),folder.end());
+        
+
+        for(auto &dir:folder){
+            string temp="";
+            bool pres=false;
+            int n=dir.size();
+            for(int i=0;i<n;i++){
+                temp+=dir[i];
+                if(st.count(temp) && (i+1<n) && dir[i+1]=='/'){
+                    pres=true;
+                    break;
+                } 
+            }
+            if(!pres) {st.insert(temp);}
+            temp="";
+        }
+
         vector<string> ans;
-        for (auto i : folder) {
-            string temp = "";
-            bool flag = true;
-            int n = i.size();
-            for (int j = 0; j < n; j++) {
-                temp += i[j];
-                if (mpp.find(temp) != mpp.end()) {
 
-                    if (j < n - 1 && i[j + 1] == '/') {
-
-                        flag = false;
-                        break;
-                    }
-                }
-            }
-
-            if (flag) {
-                mpp[i]++;
-                ans.push_back(i);
-            }
+        for(auto it:st){
+            ans.push_back(it);
         }
         return ans;
     }
