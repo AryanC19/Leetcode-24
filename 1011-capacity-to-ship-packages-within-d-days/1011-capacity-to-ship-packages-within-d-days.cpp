@@ -1,37 +1,49 @@
 class Solution {
 public:
-    int n;
-    int func(vector<int>& wt, int cap){
-        long long daysReq=1;
-        int load=0;
 
-        for(int i=0;i<n;i++){
-            if(load+wt[i]>cap){
-                daysReq++;
-                load=wt[i];
+    bool canShip(int weightLimit,vector<int>& arr, int limitDays,int n){
+
+
+        int days=0;
+        int currWeight=0;
+        int i=0;
+        while(i<n){
+            if(currWeight+arr[i]>weightLimit){
+                currWeight=arr[i];
+                days++;
             }else{
-                load+=wt[i];
+                currWeight+=arr[i];
             }
+            if(days>limitDays) return false;
+            i++;
         }
-        return daysReq;
+        //for extra currweight after traversal
+        // adds extra code, just rather return numDays and compare in main func 
+        // whether days<=limit
+        if(currWeight>0) days++;
+        if(days>limitDays) return false;
+        return true;
     }
-    int shipWithinDays(vector<int>& wt, int days) {
-        int maxi=*max_element(wt.begin(),wt.end());
-        int sum=0;
-        n=wt.size();
-        for(auto i:wt) sum+=i;
+    int shipWithinDays(vector<int>& arr, int days) {
         
-        int low=maxi,high=sum;
+        int n=arr.size();
 
-        while(low<=high){
-            int mid=low+(high-low)/2;
-            if(func(wt,mid)<=days){
-                high=mid-1;
+        
+        int l=*max_element(arr.begin(),arr.end());
+        int h=0;
+        for(auto &i:arr) h+=i;
+
+
+        int minDays=0;
+        while(l<=h){
+            int m=l+(h-l)/2;
+            if(canShip(m,arr,days,n)){
+                h=m-1;
             }else{
-                low=mid+1;
+                l=m+1;
             }
-            
         }
-        return low;
+
+        return l;
     }
 };
