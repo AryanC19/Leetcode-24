@@ -14,67 +14,44 @@
  * }
  */
 class Solution {
-    /*
-    TreeMap-> Sorts keys
-    Map /HashMap -> Unordered
-    LinkedHashMap ->Insertion order preserved
-     */
-    public void dfs(TreeNode node, TreeMap<Integer,List<TreeNode>> depthMap, int depth){
-
+    int maxDepth=-1;
+    public void dfs(TreeNode node, Map<Integer, Integer> nodeDepth, int depth){
         if(node==null) return;
-        List<TreeNode> tempList=depthMap.getOrDefault(depth, new ArrayList<>());
-        tempList.add(node);
-        depthMap.put(depth, tempList);
-        dfs(node.left, depthMap, depth+1);
-        dfs(node.right, depthMap, depth+1);
-
+        nodeDepth.put(node.val, depth);
+        maxDepth=Math.max(maxDepth,depth);
+        dfs(node.left, nodeDepth, depth+1);
+        dfs(node.right, nodeDepth, depth+1);
     }
 
+    /* here , we manipulate the standard LCA code to return the node
+       when the root ==maxDepth , instead of the standard when root==the deepest Node value. 
 
-    public TreeNode LCA(TreeNode root,TreeNode node1, TreeNode node2){
+       This is a tricky optimzation that is hard to comeby on your own .
+       if a node's left subtrees maxDepth == node;s right subtrees maxDepth, 
+       that means that node is the LCA for the deepest leaves. 
+       
+       because if either of the depth of left or right subtrees were not same, 
+       that means the subtree with longer depth is the one who possible has the LCA for the deepest nodes and the other tree is discared. 
+       check diagram in notes for clarifty .
+    */
+    public TreeNode LCA(TreeNode root,Map<Integer, Integer> nodeDepth){
         if(root==null) return null;
-        if(root.val==node1.val || root.val==node2.val) return root;
+        if(nodeDepth.get(root.val)==maxDepth) return root;
         
-        TreeNode left = LCA(root.left, node1, node2);
-        TreeNode right = LCA(root.right, node1, node2);
+        TreeNode left = LCA(root.left, nodeDepth);
+        TreeNode right = LCA(root.right, nodeDepth);
 
         if(left!=null & right!=null) return root;
         if(left!=null) return left;
         return right;
     }
 
-
     public TreeNode subtreeWithAllDeepest(TreeNode root) {
         // this is the same as LCA but instead of them giving us two nodes, 
         // we have n nodes based on a confition . condition being the furthest nodes from root
-
-        
-        //first, lets find the furthest nodes by doing a 1 pass bfs to populate depth map 
-        TreeMap<Integer, List<TreeNode>> depthMap=new TreeMap<>();
-        dfs(root, depthMap, 0);
-
-
-        List<TreeNode> deepestNodes=new ArrayList<>();
-
-        for(Map.Entry<Integer, List<TreeNode>> entry: depthMap.entrySet()){
-            //System.out.print(entry.getKey()+":   ");
-            deepestNodes=entry.getValue();
-            //for(TreeNode t:entry.getValue()) System.out.print(t.val+","); 
-            //System.out.println();
-            
-        }
-        for(TreeNode t:deepestNodes) System.out.print(t.val+","); 
-        //now that we have our depthMap, ie all the nodes at the deepest level , 
-        // we have to find LCA for that List<TreeNodes> in the last depth . 
-
-
-
-        if(deepestNodes.size()<2) return deepestNodes.get(0);
-        TreeNode lcaNode= LCA(root,deepestNodes.get(0), deepestNodes.get(1));
-        for(int i=2;i<deepestNodes.size();i++){
-            lcaNode=LCA(root,lcaNode,  deepestNodes.get(i));    
-        }
-        return lcaNode;
-
+        //first, lets find the furthest nodes by doing a 1 pass dfs to populate depth map 
+        Map<Integer, Integer> nodeDepth=new HashMap<>();
+        dfs(root, nodeDepth, 0);
+        return LCA(root, nodeDepth);
     }
 }
