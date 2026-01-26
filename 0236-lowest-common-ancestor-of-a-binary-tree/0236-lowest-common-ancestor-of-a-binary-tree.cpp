@@ -9,28 +9,18 @@
  */
 class Solution {
 public:
-
-    void func(TreeNode* root,TreeNode* p,vector<TreeNode*> &ds,bool &found){
-        if(root==NULL ||found) return;
-        ds.push_back(root);
-        if(root==p){
-            found=true;
-            return;
-        }
-        func(root->left,p,ds,found);
-        if(!found)func(root->right,p,ds,found);
-        if(!found)ds.pop_back();
-    }
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        
-        vector<TreeNode*> p1,q1;
-        bool f1=false,f2=false;
-        func(root,p,p1,f1);
-        func(root,q,q1,f2);
+        if(root== nullptr) return nullptr;
+        // if root queal p or q reutrn them since weve found
+        if(root== p || root ==q) return root;
 
-        int i=0;
-        while(i < p1.size() && i < q1.size()  && p1[i]==q1[i]) i++;
-        i--;
-        return p1[i];
+        // run dfs to search for left &  right
+        TreeNode * left= lowestCommonAncestor(root->left, p, q);
+        TreeNode * right= lowestCommonAncestor(root->right, p, q);
+        // if my left & right nodes are NOT NULL, i am the lca 
+        if(left && right) return root;
+        // if right is null that means lca is in left subtree only
+        if(left) return left;
+        return right;
     }
 };
