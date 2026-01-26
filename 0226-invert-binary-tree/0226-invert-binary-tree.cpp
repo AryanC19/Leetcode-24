@@ -11,19 +11,17 @@
  */
 class Solution {
 public:
-
     void func(TreeNode* root){
-        if(root==NULL) return;
+        if(root==NULL)return;
         func(root->left);
         func(root->right);
-        
-        TreeNode* temp=root->left;
+        TreeNode * temp= root->left;
         root->left=root->right;
         root->right=temp;
 
     }
+
     TreeNode* invertTree(TreeNode* root) {
-        
         func(root);
         return root;
     }
