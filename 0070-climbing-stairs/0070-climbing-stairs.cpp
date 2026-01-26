@@ -1,28 +1,21 @@
 class Solution {
 public:
-    
-    int n;
-    int dp[10001];
+    vector<int> dp;
+    int func(int n){
+        if(n==0) return 1;
+        if(n<0 ) return 0;
 
-    int func(int i){
+        if(dp[n]!=-1) return dp[n];
+        int c1=func(n-1);
+        int c2=func(n-2);
 
-        if(i>=n) return 1;
-
-        
-        if(dp[i]!=-1) return dp[i];
-        
-        int tot=0;
-        for(int a=1;a<=2;a++){
-            tot+=func(i+a);
-        }
-        return dp[i]=tot;
+        return dp[n]= c1+c2;
     }
-
-    int climbStairs(int N) {
-        n=N;
-        memset(dp,-1,sizeof(dp));
-        return func(1);      
+    int climbStairs(int n) {
+       // this is if dp size known and init as int[]
+       // memset(dp,-1,sizeof(dp));
+       dp.resize(n+1,-1);
+        return func(n);
 
     }
 };
-
