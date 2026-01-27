@@ -1,27 +1,28 @@
 class Solution {
 public:
 
-    int func(vector<int>& nums){
-        int n=nums.size();
+    int n;
+    int dp[2501][2501];
 
-        vector<int > dp(n,1);
-        int LIS=1;
+    int func(int i,vector<int>& nums,int li){
 
-        for(int i=0;i<n;i++){
-            for(int j=0;j<i;j++){
-                if(nums[i]>nums[j]){
-                    dp[i]=max(dp[i],dp[j]+1);
-                    LIS=max(LIS,dp[i]);
-                }
-            }
+        if(i>=n) return 0;
+        if(li!=-1 && dp[i][li]!=-1) return dp[i][li];
+
+        int nottake=func(i+1,nums,li);
+        int take=0;
+        if(li==-1 || nums[i]>nums[li]){
+            take=1+func(i+1,nums,i);
         }
-        return LIS;
+        if(li!=-1) 
+           return dp[i][li]=max(take,nottake);
+        return max(take,nottake);
+
     }
+
     int lengthOfLIS(vector<int>& nums) {
-        
-        int n=nums.size();
-
-        return func(nums);
-
+        memset(dp,-1,sizeof(dp));
+        n=nums.size();
+        return func(0,nums,-1);
     }
 };
