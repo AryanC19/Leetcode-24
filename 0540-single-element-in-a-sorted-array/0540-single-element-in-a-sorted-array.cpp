@@ -21,7 +21,13 @@ bs:
     
         int low=1;
         int high=n-2;
+//NEED <=, regardless of odd or even 
 
+/*
+    12345
+     lr 
+     situation can arise. 
+*/
         while(low<=high){
 
             int mid=low+ (high-low)/2;
