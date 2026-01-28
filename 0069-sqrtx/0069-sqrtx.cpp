@@ -1,28 +1,19 @@
 class Solution {
 public:
+    typedef long long ll;
     int mySqrt(int x) {
         
-
-        int l=0,h=x;
-
-        if (x == 0) return 0;
-
-        long long ans=0;
+        ll l=1;
+        ll h=x;
 
         while(l<=h){
-
-            long long m=l+ (h-l)/2;
-            long long sqr=m*m;
-
-            if(sqr==x) return m;
-
-            if(sqr>x){
+            int m= l+(h-l)/2;
+            if(m*m > x){
                 h=m-1;
             }else{
-                ans=m;
                 l=m+1;
             }
         }
-        return ans;
+        return h;
     }
 };
