@@ -27,4 +27,12 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [3546-equal-sum-grid-partition-i](https://github.com/AryanC19/Leetcode-24/tree/main/3546-equal-sum-grid-partition-i/) | Medium |
+## String
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [2075-decode-the-slanted-ciphertext](https://github.com/AryanC19/Leetcode-24/tree/main/2075-decode-the-slanted-ciphertext/) | Medium |
+## Simulation
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [2075-decode-the-slanted-ciphertext](https://github.com/AryanC19/Leetcode-24/tree/main/2075-decode-the-slanted-ciphertext/) | Medium |
 <!---LeetCode Topics End-->
