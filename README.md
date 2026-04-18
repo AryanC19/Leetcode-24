@@ -37,4 +37,8 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | ------- | ------- |
 | [0657-robot-return-to-origin](https://github.com/AryanC19/Leetcode-24/tree/main/0657-robot-return-to-origin/) | Easy |
 | [2075-decode-the-slanted-ciphertext](https://github.com/AryanC19/Leetcode-24/tree/main/2075-decode-the-slanted-ciphertext/) | Medium |
+## Math
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [3783-mirror-distance-of-an-integer](https://github.com/AryanC19/Leetcode-24/tree/main/3783-mirror-distance-of-an-integer/) | Easy |
 <!---LeetCode Topics End-->
