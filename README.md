@@ -14,11 +14,13 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 ## Array
 | Problem Name | Difficulty |
 | ------- | ------- |
+| [0542-01-matrix](https://github.com/AryanC19/Leetcode-24/tree/main/0542-01-matrix/) | Medium |
 | [2078-two-furthest-houses-with-different-colors](https://github.com/AryanC19/Leetcode-24/tree/main/2078-two-furthest-houses-with-different-colors/) | Easy |
 | [3546-equal-sum-grid-partition-i](https://github.com/AryanC19/Leetcode-24/tree/main/3546-equal-sum-grid-partition-i/) | Medium |
 ## Matrix
 | Problem Name | Difficulty |
 | ------- | ------- |
+| [0542-01-matrix](https://github.com/AryanC19/Leetcode-24/tree/main/0542-01-matrix/) | Medium |
 | [3546-equal-sum-grid-partition-i](https://github.com/AryanC19/Leetcode-24/tree/main/3546-equal-sum-grid-partition-i/) | Medium |
 ## Enumeration
 | Problem Name | Difficulty |
@@ -46,4 +48,12 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [2078-two-furthest-houses-with-different-colors](https://github.com/AryanC19/Leetcode-24/tree/main/2078-two-furthest-houses-with-different-colors/) | Easy |
+## Dynamic Programming
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [0542-01-matrix](https://github.com/AryanC19/Leetcode-24/tree/main/0542-01-matrix/) | Medium |
+## Breadth-First Search
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [0542-01-matrix](https://github.com/AryanC19/Leetcode-24/tree/main/0542-01-matrix/) | Medium |
 <!---LeetCode Topics End-->
