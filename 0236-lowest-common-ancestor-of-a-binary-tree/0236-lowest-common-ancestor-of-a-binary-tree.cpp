@@ -9,18 +9,20 @@
  */
 class Solution {
 public:
+// tc, 
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        if(root== nullptr) return nullptr;
-        // if root queal p or q reutrn them since weve found
-        if(root== p || root ==q) return root;
+        if(root==NULL) return NULL;
+        // if the root is etiher of the 2 nodes return it
+        if(root->val == p->val ||  root->val==q->val) return root;
 
-        // run dfs to search for left &  right
-        TreeNode * left= lowestCommonAncestor(root->left, p, q);
-        TreeNode * right= lowestCommonAncestor(root->right, p, q);
-        // if my left & right nodes are NOT NULL, i am the lca 
+        TreeNode* left =lowestCommonAncestor(root->left, p,q);
+        TreeNode* right =lowestCommonAncestor(root->right, p,q);
+
+        // if both my left and right subchild are !null, then i am the LCA
         if(left && right) return root;
-        // if right is null that means lca is in left subtree only
-        if(left) return left;
-        return right;
+        // if only my left subtree has a p or q, then i am not the LCA and i will sned this upwarwds
+        else if(left) return left;
+        //same as left
+        else return right;
     }
 };
