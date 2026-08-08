@@ -1,22 +1,27 @@
 class Solution {
 public:
-    int n;
-    
-    bool func(int i,vector<int>& arr,vector<int> &vis){
+    int dp[50001];
+    bool func(int i, vector<int>& arr){
 
-        if(i>=n || i<0 || vis[i]==1) return false;
-        if(arr[i]==0) return true;
-        vis[i]=1;
-        bool front= func(i+arr[i],arr,vis);
-        bool back=func(i-arr[i],arr,vis);
+        if(i<0 || i>=arr.size() ) return false;
+
+        if(dp[i]!=-1) return dp[i];
+        
+        if(arr[i]==0) return dp[i]=true;
+
+        //visited, using dp -1,0,1 instead dp -1,1 and vis 0,1. 
+        dp[i] = 0;
 
 
-        return front|back;
+        bool f1= func(i+arr[i], arr);
+        bool f2= func(i-arr[i], arr);
+
+        return dp[i]= (f1 || f2);
     }
-    bool canReach(vector<int>& arr, int start) {
+    
 
-        n=arr.size();
-        vector<int> vis(n,0);
-        return func(start,arr,vis);
+    bool canReach(vector<int>& arr, int start) {
+        memset(dp,-1,sizeof(dp));
+        return func(start, arr);      
     }
 };
