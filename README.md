@@ -15,6 +15,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0542-01-matrix](https://github.com/AryanC19/Leetcode-24/tree/main/0542-01-matrix/) | Medium |
+| [1306-jump-game-iii](https://github.com/AryanC19/Leetcode-24/tree/main/1306-jump-game-iii/) | Medium |
 | [2078-two-furthest-houses-with-different-colors](https://github.com/AryanC19/Leetcode-24/tree/main/2078-two-furthest-houses-with-different-colors/) | Easy |
 | [2144-minimum-cost-of-buying-candies-with-discount](https://github.com/AryanC19/Leetcode-24/tree/main/2144-minimum-cost-of-buying-candies-with-discount/) | Easy |
 | [3546-equal-sum-grid-partition-i](https://github.com/AryanC19/Leetcode-24/tree/main/3546-equal-sum-grid-partition-i/) | Medium |
@@ -58,6 +59,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0542-01-matrix](https://github.com/AryanC19/Leetcode-24/tree/main/0542-01-matrix/) | Medium |
+| [1306-jump-game-iii](https://github.com/AryanC19/Leetcode-24/tree/main/1306-jump-game-iii/) | Medium |
 ## Tree
 | Problem Name | Difficulty |
 | ------- | ------- |
@@ -66,6 +68,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0236-lowest-common-ancestor-of-a-binary-tree](https://github.com/AryanC19/Leetcode-24/tree/main/0236-lowest-common-ancestor-of-a-binary-tree/) | Medium |
+| [1306-jump-game-iii](https://github.com/AryanC19/Leetcode-24/tree/main/1306-jump-game-iii/) | Medium |
 ## Binary Tree
 | Problem Name | Difficulty |
 | ------- | ------- |
