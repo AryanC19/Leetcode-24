@@ -1,49 +1,38 @@
 class Solution {
 public:
-
-    bool canShip(int weightLimit,vector<int>& arr, int limitDays,int n){
-
-
-        int days=0;
+    bool canShip(int validCap, vector<int>& weights, int days){
+        int currDays=1;
         int currWeight=0;
-        int i=0;
-        while(i<n){
-            if(currWeight+arr[i]>weightLimit){
-                currWeight=arr[i];
-                days++;
-            }else{
-                currWeight+=arr[i];
+        for(int &w: weights){
+            currWeight+=w;
+            if(currWeight>validCap){
+                currWeight=w;
+                currDays++;
             }
-            if(days>limitDays) return false;
-            i++;
+            if(currDays>days) return false;
         }
-        //for extra currweight after traversal
-        // adds extra code, just rather return numDays and compare in main func 
-        // whether days<=limit
-        if(currWeight>0) days++;
-        if(days>limitDays) return false;
         return true;
     }
-    int shipWithinDays(vector<int>& arr, int days) {
-        
-        int n=arr.size();
+    int shipWithinDays(vector<int>& weights, int days) {
+        int sum=0;
+        int maxWeight = *max_element(weights.begin(), weights.end());
 
-        
-        int l=*max_element(arr.begin(),arr.end());
-        int h=0;
-        for(auto &i:arr) h+=i;
+        for(auto w: weights) sum+=w;
 
+        int l=maxWeight;
+        int r=sum;
+        int ans=r;
+        while(l<=r){
 
-        int minDays=0;
-        while(l<=h){
-            int m=l+(h-l)/2;
-            if(canShip(m,arr,days,n)){
-                h=m-1;
+            int m=l+(r-l)/2;
+            if(canShip(m,weights,days)){
+                ans=min(ans, m);
+                r=m-1;
             }else{
                 l=m+1;
             }
         }
 
-        return l;
+        return ans;
     }
 };
