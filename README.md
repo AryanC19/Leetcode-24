@@ -56,6 +56,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 ## Dynamic Programming
 | Problem Name | Difficulty |
 | ------- | ------- |
+| [0095-unique-binary-search-trees-ii](https://github.com/AryanC19/Leetcode-24/tree/main/0095-unique-binary-search-trees-ii/) | Medium |
 | [0542-01-matrix](https://github.com/AryanC19/Leetcode-24/tree/main/0542-01-matrix/) | Medium |
 ## Breadth-First Search
 | Problem Name | Difficulty |
@@ -65,6 +66,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 ## Tree
 | Problem Name | Difficulty |
 | ------- | ------- |
+| [0095-unique-binary-search-trees-ii](https://github.com/AryanC19/Leetcode-24/tree/main/0095-unique-binary-search-trees-ii/) | Medium |
 | [0236-lowest-common-ancestor-of-a-binary-tree](https://github.com/AryanC19/Leetcode-24/tree/main/0236-lowest-common-ancestor-of-a-binary-tree/) | Medium |
 ## Depth-First Search
 | Problem Name | Difficulty |
@@ -74,6 +76,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 ## Binary Tree
 | Problem Name | Difficulty |
 | ------- | ------- |
+| [0095-unique-binary-search-trees-ii](https://github.com/AryanC19/Leetcode-24/tree/main/0095-unique-binary-search-trees-ii/) | Medium |
 | [0236-lowest-common-ancestor-of-a-binary-tree](https://github.com/AryanC19/Leetcode-24/tree/main/0236-lowest-common-ancestor-of-a-binary-tree/) | Medium |
 ## Sorting
 | Problem Name | Difficulty |
@@ -83,4 +86,12 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [1011-capacity-to-ship-packages-within-d-days](https://github.com/AryanC19/Leetcode-24/tree/main/1011-capacity-to-ship-packages-within-d-days/) | Medium |
+## Backtracking
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [0095-unique-binary-search-trees-ii](https://github.com/AryanC19/Leetcode-24/tree/main/0095-unique-binary-search-trees-ii/) | Medium |
+## Binary Search Tree
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [0095-unique-binary-search-trees-ii](https://github.com/AryanC19/Leetcode-24/tree/main/0095-unique-binary-search-trees-ii/) | Medium |
 <!---LeetCode Topics End-->
