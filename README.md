@@ -20,6 +20,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | [2078-two-furthest-houses-with-different-colors](https://github.com/AryanC19/Leetcode-24/tree/main/2078-two-furthest-houses-with-different-colors/) | Easy |
 | [2144-minimum-cost-of-buying-candies-with-discount](https://github.com/AryanC19/Leetcode-24/tree/main/2144-minimum-cost-of-buying-candies-with-discount/) | Easy |
 | [3546-equal-sum-grid-partition-i](https://github.com/AryanC19/Leetcode-24/tree/main/3546-equal-sum-grid-partition-i/) | Medium |
+| [3551-minimum-swaps-to-sort-by-digit-sum](https://github.com/AryanC19/Leetcode-24/tree/main/3551-minimum-swaps-to-sort-by-digit-sum/) | Medium |
 ## Matrix
 | Problem Name | Difficulty |
 | ------- | ------- |
@@ -83,6 +84,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [2144-minimum-cost-of-buying-candies-with-discount](https://github.com/AryanC19/Leetcode-24/tree/main/2144-minimum-cost-of-buying-candies-with-discount/) | Easy |
+| [3551-minimum-swaps-to-sort-by-digit-sum](https://github.com/AryanC19/Leetcode-24/tree/main/3551-minimum-swaps-to-sort-by-digit-sum/) | Medium |
 ## Binary Search
 | Problem Name | Difficulty |
 | ------- | ------- |
@@ -103,4 +105,8 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [1190-reverse-substrings-between-each-pair-of-parentheses](https://github.com/AryanC19/Leetcode-24/tree/main/1190-reverse-substrings-between-each-pair-of-parentheses/) | Medium |
+## Hash Table
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [3551-minimum-swaps-to-sort-by-digit-sum](https://github.com/AryanC19/Leetcode-24/tree/main/3551-minimum-swaps-to-sort-by-digit-sum/) | Medium |
 <!---LeetCode Topics End-->
