@@ -3,7 +3,7 @@ public:
     static bool digitSumComparator(int a, int b){
 
         int digiSumA=0,digiSumB=0;
-
+        int A=a, B=b;
         while(a>0){
             digiSumA+= a%10;
             a/=10;
@@ -13,8 +13,7 @@ public:
             b/=10;
         }
 
-        return digiSumA <= digiSumB ? true : false;
-
+        return digiSumA != digiSumB ? digiSumA < digiSumB : A < B;
     }
     int minSwaps(vector<int>& nums) {
         vector<int> afterSort = nums;
@@ -40,6 +39,8 @@ public:
                 swaps++;
                 nums[i]=expectedVal; 
                 nums[idx]=currVal; 
+                positionMap[expectedVal] = i;
+                positionMap[currVal] = idx;
             }
         }
 
