@@ -40,6 +40,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | [0657-robot-return-to-origin](https://github.com/AryanC19/Leetcode-24/tree/main/0657-robot-return-to-origin/) | Easy |
 | [1190-reverse-substrings-between-each-pair-of-parentheses](https://github.com/AryanC19/Leetcode-24/tree/main/1190-reverse-substrings-between-each-pair-of-parentheses/) | Medium |
 | [2075-decode-the-slanted-ciphertext](https://github.com/AryanC19/Leetcode-24/tree/main/2075-decode-the-slanted-ciphertext/) | Medium |
+| [2124-check-if-all-as-appears-before-all-bs](https://github.com/AryanC19/Leetcode-24/tree/main/2124-check-if-all-as-appears-before-all-bs/) | Easy |
 | [2409-count-days-spent-together](https://github.com/AryanC19/Leetcode-24/tree/main/2409-count-days-spent-together/) | Easy |
 ## Simulation
 | Problem Name | Difficulty |
